@@ -8,15 +8,15 @@ Gives an output "ProtSeqStats-ARG.out" with amino acid frequency</p>
 ### EXO2 - Web Semantic Exercise
 <p>neXtProt SPARQL environment request</p>
 <p>
-SELECT distinct ?geneName ?len
-WHERE
-	{
-	?entry :isoform ?iso .
-	?iso :swissprotDisplayed true .
-	?entry :gene / :name ?geneName .
-	? iso *** / *** ?len .
-	}
-ORDER BY ?len
+SELECT distinct ?geneName ?len<br/>
+WHERE<br/>
+	{<br/>
+	?entry :isoform ?iso .<br/>
+	?iso :swissprotDisplayed true .<br/>
+	?entry :gene / :name ?geneName .<br/>
+	? iso *** / *** ?len .<br/>
+	}<br/>
+ORDER BY ?len<br/>
 LIMIT 3
 </p>
 
