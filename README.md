@@ -14,9 +14,9 @@ WHERE<br/>
 	?entry :isoform ?iso .<br/>
 	?iso :swissprotDisplayed true .<br/>
 	?entry :gene / :name ?geneName .<br/>
-	? iso *** / *** ?len .<br/>
+	? iso :sequence / :length ?len .<br/>
 	}<br/>
-ORDER BY ?len<br/>
+ORDER BY DESC (?len)<br/>
 LIMIT 3
 </p>
 
