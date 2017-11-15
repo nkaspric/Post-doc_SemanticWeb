@@ -7,20 +7,8 @@ Gives an output "ProtSeqStats-ARG.out" with amino acid frequency</p>
 
 ### EXO2 - Web Semantic Exercise
 <p>neXtProt SPARQL environment request</p>
-<p>
-SELECT distinct ?geneName ?len<br/>
-WHERE<br/>
-	{<br/>
-	?entry :isoform ?iso .<br/>
-	?iso :swissprotDisplayed true .<br/>
-	?entry :gene / :name ?geneName .<br/>
-	?iso :sequence / :length ?len .<br/>
-	}<br/>
-ORDER BY DESC (?len)<br/>
-LIMIT 3
-</p>
 
-```SQL
+```SPARQL
 SELECT distinct ?geneName ?len
 WHERE
 	{<
@@ -49,26 +37,26 @@ At this point I encountered several problems to display the results. Indeed, the
 So I looked at the Uniprot and neXtProt datamodels and I see a link thank's to "skos:exactMatch" method.
 </p>
 <br/>
-<p>
-PREFIX up:<http://purl.uniprot.org/core/><br/>
-PREFIX skos:<http://www.w3.org/2004/02/skos/core#><br/>
-SELECT DISTINCT ?entry<br/>
-where<br/>
-	{<br/>
-	SERVICE <http://sparql.uniprot.org/sparql><br/>
-		{<br/>
-		SELECT ?protein ?anme<br/>
-		WHERE<br/>
-			{<br/>
-			?protein a up:Protein .<br/>
-			?protein up:recommendedName ?recommended .<br/>
-			?recommended up:fullName ?name .<br/>
-			?protein up:encodedBy ?gene .<br/>
-			?gene skos:prefLabel ?text .<br/>
-			FILTER CONTAINS(?text, 'DNA') .<br/>
-			}<br/>
-		}<br/>
-	?entry skos:exactMatch ?protein .<br/>
-	}<br/>
-LIMIT 10<br/>
-</p>
+```SPARQL
+PREFIX up:<http://purl.uniprot.org/core/>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+SELECT DISTINCT ?entry
+WHERE
+	{
+	SERVICE <http://sparql.uniprot.org/sparql>
+		{
+		SELECT ?protein ?anme
+		WHERE
+			{
+			?protein a up:Protein .
+			?protein up:recommendedName ?recommended .
+			?recommended up:fullName ?name .
+			?protein up:encodedBy ?gene .
+			?gene skos:prefLabel ?text .
+			FILTER CONTAINS(?text, 'DNA') .
+			}
+		}
+	?entry skos:exactMatch ?protein .
+	}
+LIMIT 10
+```
