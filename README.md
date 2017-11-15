@@ -20,6 +20,18 @@ ORDER BY DESC (?len)<br/>
 LIMIT 3
 </p>
 
+```SQL
+SELECT distinct ?geneName ?len
+WHERE
+	{<
+	?entry :isoform ?iso .
+	?iso :swissprotDisplayed true .
+	?entry :gene / :name ?geneName .
+	?iso :sequence / :length ?len .
+	}
+ORDER BY DESC (?len)
+LIMIT 3
+```
 
 ### EXO3 - Enhancement(s)
 <p>In my previous projects, I have been able to use APIs similar to nextProt. The examples available on the website are very explicit, it allow you to test your query directly on the website and then implement your script with the API links. The proposed formats are commonly used in other applications and are therefore easily reusable. I often work with Uniprot and I find their format "text" (.txt - http://www.uniprot.org/uniprot/P01308.txt) light, very easy to use and to read especially for non-programmer public .<br/>
