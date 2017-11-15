@@ -3,6 +3,9 @@
 use strict;
 use warnings;
 
+#---------------------------------------------------------------------------#
+# Created by KASPRIC Nicolas as part of a post-doc application. This program is not licensed and can be reused for free.
+
 #############################################################################
 #----- VARIABLES & SOURCES -------------------------------------------------#
 my $input=$ARGV[0]; # Input : directly an ID like "NX_P01308"
@@ -16,20 +19,19 @@ open (OUT, ">ProtSeqStats-$input.out" || die "Impossible de créer le fichier de
 #----- SCRIPT ---------------------------------------------------------------#
 print STDERR "Working with $input\n";
 # script star by downloading information of the input from nextProt api service
-my $query=system('wget -q -O tmp_'.$input.'.txt "https://api.nextprot.org/entry/'.$input.'/isoform.json"');
+my $query=system('wget -q -O tmp_'.$input.'.fasta "https://api.nextprot.org/entry/'.$input.'.fasta"');
 # now retrieve the sequence from the file
 my $checker=0; my $seq = "";
-open (TEMP, "tmp_$input.txt" || die "can't open tmp_$input.txt ! \n");
+open (TEMP, "tmp_$input.fasta" || die "can't open tmp_$input.txt ! \n");
 while (<TEMP>)
 	{
-	chomp $_;
-	if ($_=~ m/"uniqueName" : "$input"/g) { $checker = 1;}
-	if ($_=~ m/"sequence" : "(.+)"/g && $checker==1) { $seq = $1; goto TEMPEND;}
+	chomp $_; $_=~ s/\n|\r//;
+	if ($_=~ m/^>(.+)/g) { print STDERR "Sequence header: $1\n";}
+		else { $seq = $seq.$_;}
 	}
-TEMPEND:
 close TEMP;
-`rm tmp_$input.txt`;
-print STDERR "Sequence retieved $seq\n";
+`rm tmp_$input.fasta`;
+print STDERR "Sequence retrieved: $seq\n";
 # work on the sequence
 my %h_aa; my $totaa=0;
 my @tabseq=split("", $seq);
