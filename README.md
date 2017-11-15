@@ -45,7 +45,7 @@ WHERE
 	{
 	SERVICE <http://sparql.uniprot.org/sparql>
 		{
-		SELECT ?protein ?anme
+		SELECT ?protein ?name
 		WHERE
 			{
 			?protein a up:Protein .
