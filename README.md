@@ -45,12 +45,10 @@ WHERE
 	{
 	SERVICE <http://sparql.uniprot.org/sparql>
 		{
-		SELECT ?protein ?name
+		SELECT ?protein
 		WHERE
 			{
 			?protein a up:Protein .
-			?protein up:recommendedName ?recommended .
-			?recommended up:fullName ?name .
 			?protein up:encodedBy ?gene .
 			?gene skos:prefLabel ?text .
 			FILTER CONTAINS(?text, 'DNA') .
