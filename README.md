@@ -32,7 +32,7 @@ As a non expert web semantic developer, I found the use of your SPARQL point eas
 ### EXO4 - Bonus question - Federated Queries (optional)
 <p>
 I am not an expert of SPARQL so i decided to made a query to display neXtProt entries using Uniprot ressource.<br/>
-On the Uniprot SPARQL query builder, there is a request to generate all the UniProt entries, and their recommended protein name, that have a preferred gene name that contains the text 'DNA' (prebuild query). I integrated this query into a simple request of neXtProt to display all neXtProt entries (all human proteins from Uniprot query).<br/>
+On the Uniprot SPARQL query builder, there is a request to generate all the UniProt entries that have a preferred gene name that contains the text 'DNA' (prebuild query). I integrated this query into a simple request of neXtProt to display all neXtProt entries (all human proteins from Uniprot query).<br/>
 At this point I encountered several problems to display the results. Indeed, there was no link between my uniprot results and nextProt entries.<br/>
 So I looked at the Uniprot and neXtProt datamodels and I see a link thank's to "skos:exactMatch" method.
 </p>
