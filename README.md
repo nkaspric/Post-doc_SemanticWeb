@@ -11,7 +11,7 @@ Gives an output "ProtSeqStats-ARG.out" with amino acid frequency</p>
 ```SPARQL
 SELECT distinct ?geneName ?len
 WHERE
-	{<
+	{
 	?entry :isoform ?iso .
 	?iso :swissprotDisplayed true .
 	?entry :gene / :name ?geneName .
@@ -36,7 +36,7 @@ On the Uniprot SPARQL query builder, there is a request to generate all the UniP
 At this point I encountered several problems to display the results. Indeed, there was no link between my uniprot results and nextProt entries.<br/>
 So I looked at the Uniprot and neXtProt datamodels and I see a link thank's to "skos:exactMatch" method.
 </p>
-<br/>
+
 ```SPARQL
 PREFIX up:<http://purl.uniprot.org/core/>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
