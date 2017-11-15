@@ -9,7 +9,7 @@ Gives an output "ProtSeqStats-ARG.out" with amino acid frequency</p>
 <p>neXtProt SPARQL environment request</p>
 
 ```SPARQL
-SELECT distinct ?geneName ?len
+SELECT DISTINCT ?geneName ?len
 WHERE
 	{
 	?entry :isoform ?iso .
